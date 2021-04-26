@@ -3,17 +3,17 @@ class Sentence:
     
     def __init__(self, conll_sent: list, from_slice=False):
         if not from_slice:
-            self.ents = [NamedEntity(ner) for ner in conll_sent]
+            self.tokens = [NamedEntity(ner) for ner in conll_sent]
         else:
-            self.ents = conll_sent
+            self.tokens = conll_sent
     
     
     def __repr__(self):
-        return ' '.join([ent.text for ent in self.ents])
+        return ' '.join([ent.text for ent in self.tokens])
     
     
     def __getitem__(self, slice_):
-        sliced = self.ents[slice_]
+        sliced = self.tokens[slice_]
         
         if not isinstance(sliced, list):
             sliced = [sliced]
@@ -22,7 +22,7 @@ class Sentence:
     
     
     def __len__(self):
-        return len(self.ents)
+        return len(self.tokens)
 
 
 class NamedEntity:
